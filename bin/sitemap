@@ -1,0 +1,13 @@
+#!/usr/bin/php -q
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+
+if ($argv[1] == '') {
+    echo "usage: bin/sitemap [root_url]\n";
+    exit;
+}
+
+$sleep = $argv[2] == '' ? 3 : $argv[2];
+
+$app = new SiteMap\Application($argv[1], $sleep);
+$app->run();

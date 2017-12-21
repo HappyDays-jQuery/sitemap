@@ -1,0 +1,27 @@
+{
+  "name": "happydays/sitemap",
+  "description": "build sitemap.",
+  "require": {
+    "fabpot/goutte": "^3.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "happydays",
+      "email": "developer@jquery.tokyo"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SiteMap\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SiteMap\\": "tests/"
+    }
+  }
+}
