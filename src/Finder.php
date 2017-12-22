@@ -50,11 +50,11 @@ class Finder
 
     public function getUrl($path)
     {
-        if (Utils::isJavaScript($path)) {
-            return '';
-        }
-
-        if (Utils::isAnchor($path)) {
+        if (Utils::isTel($path)
+            || Utils::isMailTo($path)
+            || Utils::isJavaScript($path)
+            || Utils::isAnchor($path)
+        ) {
             return '';
         }
 

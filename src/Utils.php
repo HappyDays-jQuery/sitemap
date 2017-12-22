@@ -29,6 +29,16 @@ class Utils
         return preg_match("/\.js|\.css|\.pdf|\.jpg|\.gif|\.png|\.xml|\.rss|\.rdf/", $str);
     }
 
+    public static function isTel($path)
+    {
+        return stripos($path, 'tel:') === 0;
+    }
+
+    public static function isMailTo($path)
+    {
+        return stripos($path, 'mailto:') === 0;
+    }
+
     public static function isJavaScript($path)
     {
         return stripos($path, 'javascript:') === 0;
