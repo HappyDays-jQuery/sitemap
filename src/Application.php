@@ -64,7 +64,7 @@ class Application
         echo "scan end.\n\n";
         echo "visited (" . count($this->visited) . ") : \n" . implode($this->visited, "\n") . "\n";
         echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
-        echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n" ) . "\n";
+        echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n") . "\n";
     }
 
     /**
