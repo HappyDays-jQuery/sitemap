@@ -32,7 +32,7 @@ class Application
     /**
      * Application constructor.
      * @param string $url
-     * @param int $sleep
+     * @param int    $sleep
      */
     public function __construct($url, $sleep = 2)
     {
