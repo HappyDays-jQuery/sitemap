@@ -38,7 +38,6 @@ class Finder
             Utils::display("タイトル: " . $this->page->getTittle());
             Utils::display("見出し: " . $this->page->getBreadCram());
         } catch (\Exception $e) {
-
         }
         $crawler->filter('a')->each(function ($element) {
             $tmpUrl = $this->getUrl($element->attr('href'));
