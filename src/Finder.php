@@ -68,7 +68,7 @@ class Finder
         }
 
         if (!Utils::isUrl($path)) {
-            $path = $this->page->getScheme() . "://" . $this->page->getHost() . Utils::normalize($path);
+            $path = $this->page->getScheme() . "://" . $this->page->getHost() . "/" . Utils::normalize($path);
         }
 
         return $path;
