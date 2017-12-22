@@ -46,7 +46,6 @@ class Finder
                 $this->links[] = $tmpUrl;
             }
         });
-        Utils::display("found: " . count($this->links));
     }
 
     public function getUrl($path)
