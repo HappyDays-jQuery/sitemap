@@ -20,7 +20,8 @@ class Utils
 
     public static function isUrl($str)
     {
-        return filter_var($str, FILTER_VALIDATE_URL);
+        //return filter_var($str, FILTER_VALIDATE_URL);
+        return preg_match('/^(http|https|ftp):\/\/([A-Z0-9][A-Z0-9_-]*(?:\.[A-Z0-9][A-Z0-9_-]*)+):?(\d+)?\/?/i', $str);
     }
 
     public static function isStaticFile($str)
