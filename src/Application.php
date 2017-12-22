@@ -51,7 +51,9 @@ class Application
             $target = array_shift($this->unvisited);
             $finder = new Finder(new Page($target));
             $this->visited[] = $target;
-            $this->assortment($finder->getLinks());
+            foreach ($finder->getLinks() as $url) {
+                $this->assortment($url);
+            }
             unset($finder);
         }
 
@@ -66,43 +68,33 @@ class Application
     }
 
     /**
-     * @param array $urls
+     * @param string $url
      */
-    public function assortment($urls)
+    public function assortment($url)
     {
-        foreach ($urls as $url) {
-            if (Utils::isJavaScript($url)) {
-                continue;
-            }
-
-            if (Utils::isAnchor($url)) {
-                continue;
-            }
-
-            if (!Utils::isSameDomain($this->domain, $url)) {
-                if (!in_array($url, $this->externals)) {
-                    $this->externals[] = $url;
-                }
-                continue;
-            }
-
-            if (Utils::isStaticFile($url)) {
-                if (!in_array($url, $this->staticFiles)) {
-                    $this->staticFiles[] = $url;
-                }
-                continue;
-            }
-
-            if (in_array($url, $this->visited)) {
-                continue;
-            }
-
-            if (in_array($url, $this->unvisited)) {
-                continue;
-            }
-
-            $this->unvisited[] = $url;
+        if (Utils::isJavaScript($url)
+            || Utils::isAnchor($url)
+            || in_array($url, $this->visited)
+            || in_array($url, $this->unvisited)
+        ) {
+            return;
         }
+
+        if (!Utils::isSameDomain($this->domain, $url)) {
+            if (!in_array($url, $this->externals)) {
+                $this->externals[] = $url;
+            }
+            return;
+        }
+
+        if (Utils::isStaticFile($url)) {
+            if (!in_array($url, $this->staticFiles)) {
+                $this->staticFiles[] = $url;
+            }
+            return;
+        }
+
+        $this->unvisited[] = $url;
     }
 
     public function isRemains()
