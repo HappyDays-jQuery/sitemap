@@ -47,5 +47,6 @@ class FileIoTest extends CommonTestCase
         $this->assertEquals("/bbb", Utils::normalize('/aaa/../bbb'));
         $this->assertEquals("/bbb", Utils::normalize('/aaa/../../bbb'));
         $this->assertEquals("/bbb", Utils::normalize('/aaa/../../../bbb'));
+        $this->assertEquals("/ccc", Utils::normalize('/aaa/../../bbb/../ccc'));
     }
 }
