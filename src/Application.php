@@ -53,16 +53,16 @@ class Application
             $this->visited[] = $target;
             $this->assortment($finder->getLinks());
             unset($finder);
-            $this->repoter();
         }
 
         sort($this->visited);
         sort($this->staticFiles);
         sort($this->externals);
 
-        echo "visited : \n" . implode($this->visited, "\n") . "\n";
-        echo "static files : \n" . implode($this->staticFiles, "\n") . "\n";
-        echo "external : \n" . implode($this->externals, "\n" ) . "\n";
+        echo "scan end.\n\n";
+        echo "visited (" . count($this->visited) . ") : \n" . implode($this->visited, "\n") . "\n";
+        echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
+        echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n" ) . "\n";
     }
 
     /**
@@ -108,15 +108,5 @@ class Application
     public function isRemains()
     {
         return count($this->unvisited) > 0;
-    }
-
-    private function repoter()
-    {
-        echo "  unvisited: " . count($this->unvisited);
-        echo "  visited: " . count($this->visited);
-        echo "  static files: " . count($this->staticFiles);
-        echo "  external: " . count($this->externals);
-        echo "\n";
-        Utils::flushBuffers();
     }
 }
