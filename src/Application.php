@@ -57,14 +57,7 @@ class Application
             unset($finder);
         }
 
-        sort($this->visited);
-        sort($this->staticFiles);
-        sort($this->externals);
-
-        echo "scan end.\n\n";
-        echo "visited (" . count($this->visited) . ") : \n" . implode($this->visited, "\n") . "\n";
-        echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
-        echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n") . "\n";
+        $this->report();
     }
 
     /**
@@ -100,5 +93,17 @@ class Application
     public function isRemains()
     {
         return count($this->unvisited) > 0;
+    }
+
+    public function report()
+    {
+        sort($this->visited);
+        sort($this->staticFiles);
+        sort($this->externals);
+
+        echo "scan end.\n\n";
+        echo "visited (" . count($this->visited) . ") : \n" . implode($this->visited, "\n") . "\n";
+        echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
+        echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n") . "\n";
     }
 }
