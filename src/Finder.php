@@ -56,8 +56,7 @@ class Finder
         ) {
             return '';
         }
-
-        if (Utils::isNoScheme($path)) {
+        if (Utils::isNoScheme($path) && $path != '//') {
             $path = $this->page->getScheme() . ":" . $path;
         }
 
