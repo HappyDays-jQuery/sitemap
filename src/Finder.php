@@ -62,10 +62,6 @@ class Finder
             $path = $this->page->getScheme() . ":" . $path;
         }
 
-        if (Utils::isAbsolute($path)) {
-            $path = $this->page->getScheme() . "://" . $this->page->getHost() . $path;
-        }
-
         if (!Utils::isUrl($path)) {
             $path = $this->page->getScheme() . "://" . $this->page->getHost() . "/" . Utils::normalize($path);
         }
