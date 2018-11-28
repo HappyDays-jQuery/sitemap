@@ -30,6 +30,8 @@ class Finder
     public function crawl()
     {
         $cli = new Client();
+        $cli->followRedirects(false);
+        $cli->setMaxRedirects(-1);
         $crawler = $cli->request('GET', $this->page->getUrl());
 
         try {
