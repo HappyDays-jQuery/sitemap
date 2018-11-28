@@ -26,7 +26,7 @@ class Utils
 
     public static function isStaticFile($str)
     {
-        return preg_match("/\.js|\.css|\.pdf|\.jpg|\.gif|\.png|\.xml|\.rss|\.rdf|\.mov/", $str);
+        return preg_match("/\.js$|\.css$|\.pdf$|\.jpg$|\.gif$|\.png$|\.xml$|\.rss$|\.rdf$|\.mov$/", strtolower($str));
     }
 
     public static function isTel($path)
