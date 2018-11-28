@@ -40,7 +40,7 @@ class Finder
         } catch (\Exception $e) {
         }
         $crawler->filter('a')->each(function ($element) {
-            $tmpUrl = $this->getUrl($element->attr('href'));
+            $tmpUrl = $this->getUrl(preg_replace('/\n|\r|\r\n/', '', ltrim($element->attr('href'))));
             if ($tmpUrl != "" && !in_array($tmpUrl, $this->links)) {
                 $this->links[] = $tmpUrl;
             }
