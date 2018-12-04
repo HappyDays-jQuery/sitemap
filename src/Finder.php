@@ -82,20 +82,4 @@ class Finder
     {
         return $this->links;
     }
-
-    /**
-     * @return int
-     */
-    public function getResponseCode()
-    {
-        return $this->responseCode;
-    }
-
-    /**
-     * @param int $responseCode
-     */
-    public function setResponseCode($responseCode)
-    {
-        $this->responseCode = $responseCode;
-    }
 }
