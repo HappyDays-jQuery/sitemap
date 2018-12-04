@@ -36,6 +36,10 @@ class Page
      * @var string
      */
     private $breadCram;
+    /**
+     * @var string
+     */
+    private $responseCode;
 
     public function __construct($url, $tittle = '', $breadCram = '')
     {
@@ -52,7 +56,7 @@ class Page
 
     public function __toString()
     {
-        return "{$this->getHost()}\t{$this->getUrl()}\t{$this->getPath()}\t{$this->getTittle()}\t{$this->getBreadCram()}\n";
+        return "{$this->getTittle()}\t{$this->getUrl()}\t{$this->getResponseCode()}";
     }
 
     /**
@@ -181,5 +185,21 @@ class Page
     public function setPass($pass)
     {
         $this->pass = $pass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseCode()
+    {
+        return $this->responseCode;
+    }
+
+    /**
+     * @param string $responseCode
+     */
+    public function setResponseCode($responseCode)
+    {
+        $this->responseCode = $responseCode;
     }
 }
