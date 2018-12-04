@@ -38,6 +38,7 @@ class Finder
             $cli->setAuth($this->page->getUser(), $this->page->getPass());
         }
         $crawler = $cli->request('GET', $this->page->getUrl());
+        $this->page->setResponseCode($cli->getResponse()->getStatus());
 
         try {
             $this->page->setTittle($crawler->filter('title')->text());
