@@ -109,8 +109,8 @@ class Application
 
         echo "scan end.\n\n";
         echo "visited (" . count($this->visited) . ") : \n";
-        foreach ($this->visited as $url){
-            echo (string) $this->visitedPages[hash('sha256', $url)] ."\n";
+        foreach ($this->visited as $url) {
+            echo (string)$this->visitedPages[hash('sha256', $url)] . "\n";
         }
         echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
         echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n") . "\n";
