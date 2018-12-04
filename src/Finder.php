@@ -63,8 +63,8 @@ class Finder
         }
 
         if (!Utils::isUrl($path)) {
-            $url = new Url($this->page->getUrl());
-            $path = $url->resolve(Utils::normalize($path));
+            $target = new URI($path);
+            $path = $target->resolve(new URI($this->page->getUrl()));
         }
 
         return $path;
