@@ -53,6 +53,12 @@ class Finder
                 $this->links[] = $tmpUrl;
             }
         });
+        $crawler->filter('form')->each(function ($element) {
+            $tmpUrl = $this->getUrl(preg_replace('/\n|\r|\r\n/', '', ltrim($element->attr('action'))));
+            if ($tmpUrl != "" && !in_array($tmpUrl, $this->links)) {
+                $this->links[] = $tmpUrl;
+            }
+        });
 
         return $this->page;
     }
