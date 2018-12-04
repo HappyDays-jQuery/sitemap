@@ -50,6 +50,7 @@ class Application
             sleep($this->sleep);
             $target = array_shift($this->unvisited);
             $finder = new Finder(new Page($target));
+            $page = $finder->crawl();
             $this->visited[] = $target;
             foreach ($finder->getLinks() as $url) {
                 $this->assortment($url);

@@ -24,7 +24,6 @@ class Finder
         $this->links = [];
         $this->page = $page;
         Utils::display("target: {$page->getUrl()}");
-        $this->crawl();
     }
 
     public function crawl()
