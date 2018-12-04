@@ -28,6 +28,10 @@ class Application
      * @var string
      */
     private $domain;
+    /**
+     * @var Page[]
+     */
+    private $visitedPages;
 
     /**
      * Application constructor.
@@ -52,6 +56,7 @@ class Application
             $finder = new Finder(new Page($target));
             $page = $finder->crawl();
             $this->visited[] = $target;
+            $this->visitedPages[hash('sha256', $target)] = $page;
             foreach ($finder->getLinks() as $url) {
                 $this->assortment($url);
             }
@@ -103,7 +108,10 @@ class Application
         sort($this->externals);
 
         echo "scan end.\n\n";
-        echo "visited (" . count($this->visited) . ") : \n" . implode($this->visited, "\n") . "\n";
+        echo "visited (" . count($this->visited) . ") : \n";
+        foreach ($this->visited as $url){
+            echo (string) $this->visitedPages[hash('sha256', $url)] ."\n";
+        }
         echo "static files (" . count($this->staticFiles) . ") : \n" . implode($this->staticFiles, "\n") . "\n";
         echo "external (" . count($this->externals) . ") : \n" . implode($this->externals, "\n") . "\n";
     }
