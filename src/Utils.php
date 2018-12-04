@@ -59,47 +59,29 @@ class Utils
         return strpos($path, '#') === 0;
     }
 
-    public static function normalize($path)
-    {
-        $parts = [];
-        $segments = explode('/', preg_replace('@/++@', '/', $path));
-        foreach ($segments as $segment) {
-            Utils::relativePath($segment, $parts);
-        }
-        $parts = implode('/', $parts);
-
-        if (Utils::isAbsolute($path)) {
-            $parts = preg_replace('@^(?:\.{2}/)++@', '/', $parts);
-        }
-
-        return $parts;
-    }
-
-    public static function relativePath($segment, &$parts)
-    {
-        if ($segment === '.') {
-            return;
-        }
-
-        if (null === $tail = array_pop($parts)) {
-            $parts[] = $segment;
-        } elseif ($segment === '..') {
-            if ($tail === '..') {
-                $parts[] = $tail;
-            }
-            if ($tail === '..' || $tail === '') {
-                $parts[] = $segment;
-            }
-        }
-
-        if ($tail !== null && $segment !== '..') {
-            $parts[] = $tail;
-            $parts[] = $segment;
-        }
-    }
-
     public static function isSameDomain($domain, $target)
     {
         return $domain == parse_url($target, PHP_URL_HOST);
+    }
+
+
+    public static function removeDotSegments($path)
+    {
+        if (!$path) {
+            return "";
+        }
+
+        $newPath = preg_replace("/\/\.\//", '/', $path);
+        $newPath = preg_replace("/\/\.$/", '/', $newPath);
+
+        while (preg_match("/\/((?!\.\.\/)[^\/]*)\/\.\.\//", $newPath)) {
+            $newPath = preg_replace("/\/((?!\.\.\/)[^\/]*)\/\.\.\//", '/', $newPath);
+        }
+        $newPath = preg_replace("/\/([^\/]*)\/\.\.$/", '/', $newPath);
+
+        while (preg_match("/\/\.\.\//", $newPath)) {
+            $newPath = preg_replace("/\/\.\.\//", '/', $newPath);
+        }
+        return $newPath;
     }
 }
