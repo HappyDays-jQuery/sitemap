@@ -32,6 +32,9 @@ class Finder
         $cli = new Client();
         $cli->followRedirects(false);
         $cli->setMaxRedirects(-1);
+        if ($this->page->getUser()) {
+            $cli->setAuth($this->page->getUser(), $this->page->getPass());
+        }
         $crawler = $cli->request('GET', $this->page->getUrl());
 
         try {

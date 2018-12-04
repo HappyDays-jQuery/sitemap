@@ -11,6 +11,14 @@ class Page
     /**
      * @var string
      */
+    private $user;
+    /**
+     * @var string
+     */
+    private $pass;
+    /**
+     * @var string
+     */
     private $host;
     /**
      * @var string
@@ -33,6 +41,8 @@ class Page
     {
         $arrRet = parse_url($url);
         $this->setScheme($arrRet['scheme']);
+        $this->setUser($arrRet['user']);
+        $this->setPass($arrRet['pass']);
         $this->setHost($arrRet['host']);
         $this->setUrl($url);
         $this->setPath($arrRet['path']);
@@ -139,5 +149,37 @@ class Page
     public function setScheme($scheme)
     {
         $this->scheme = $scheme;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPass()
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @param string $pass
+     */
+    public function setPass($pass)
+    {
+        $this->pass = $pass;
     }
 }
