@@ -26,6 +26,9 @@ class Finder
         Utils::display("target: {$page->getUrl()}");
     }
 
+    /**
+     * @return Page
+     */
     public function crawl()
     {
         $cli = new Client();
@@ -49,6 +52,8 @@ class Finder
                 $this->links[] = $tmpUrl;
             }
         });
+
+        return $this->page;
     }
 
     public function getUrl($path)
